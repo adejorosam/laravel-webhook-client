@@ -22,7 +22,7 @@ class DefaultSignatureValidator implements SignatureValidator
             throw WebhookFailed::signingSecretNotSet();
         }
 
-        $computedSignature = hash_hmac('sha256', $request->getContent(), $signingSecret);
+        $computedSignature = hash_hmac('sha512', $request->getContent(), $signingSecret);
 
         return hash_equals($signature, $computedSignature);
     }
